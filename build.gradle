@@ -1,0 +1,36 @@
+if(Boolean.valueOf(release) == false) {
+    version = version + '-SNAPSHOT'
+}
+group 'com.github.newnewcoder'
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+}
+ext {
+    linebotVersion = '1.6.0'
+}
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile "com.linecorp.bot:line-bot-api-client:$linebotVersion"
+
+    testCompile 'junit:junit:4.11'
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: mavenUrl + 'releases') {
+            authentication(userName: repoUser, password: repoPassword)
+        }
+        snapshotRepository(url: mavenUrl + 'snapshots') {
+            authentication(userName: repoUser, password: repoPassword)
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}

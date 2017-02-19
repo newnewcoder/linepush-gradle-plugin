@@ -1,0 +1,188 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url mavenUrl
+            credentials {
+                username repoUser
+                password repoPassword
+            }
+        }
+    }
+    dependencies {
+        classpath 'com.github.newnewcoder:linepush:0.0.1-SNAPSHOT'
+    }
+}
+apply plugin: 'linepush'
+
+import net.linepush.tasks.*
+
+line {
+    token = linetoken
+    sendTo = roomid
+    text = 'Hello, world?'
+}
+
+task sendText(type: Text) {
+    text = "Hello, world!"
+}
+
+task sendImage(type: Image) {
+    originalContentUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+    previewImageUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+}
+
+task sendVideo(type: Video) {
+    originalContentUrl = "https://youtu.be/example"
+    previewImageUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+}
+
+task sendAudio(type: Audio) {
+    originalContentUrl = "https://youtu.be/example"
+    duration = 240000
+}
+
+task sendLocation(type: Location) {
+    title = "my location"
+    address = "〒150-0002 東京都渋谷区渋谷２丁目２１−１" //linecrop's example
+    latitude = 35.65910807942215
+    longitude = 139.70372892916203
+}
+
+task sendSticker(type: Sticker) {
+    packageId = "1"
+    stickerId = "1"
+}
+
+task sendImagemap(type: Imagemap) {
+    baseUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+    altText = "this is an imagemap"
+    baseSize = {
+        height = 1040
+        width = 1040
+    }
+    actions = [
+            {
+                type = "uri"
+                linkUri = "https://raw.githubusercontent.com/newnewcoder"
+                area = {
+                    x = 0
+                    y = 0
+                    width = 520
+                    height = 1040
+                }
+            },
+            {
+                type = "message"
+                text = "hello"
+                area = {
+                    x = 520
+                    y = 0
+                    width = 520
+                    height = 1040
+                }
+            }
+    ]
+}
+
+
+task sendButtons(type: Template) {
+    altText = "this is a buttons template"
+    template = {
+        type = "buttons"
+        thumbnailImageUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+        title = "Menu"
+        text = "Please select "
+        actions = [
+                {
+                    type = "postback"
+                    label = "click1"
+                    data = "action=123"
+                },
+                {
+                    type = "postback"
+                    label = "click2"
+                    data = "action=456"
+                },
+                {
+                    type = "uri"
+                    label = "view detail"
+                    uri = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+                }
+        ]
+    }
+}
+
+task sendConfirm(type: Template) {
+    altText = "this is a confirm template"
+    template = {
+        type = "confirm"
+        text = "yes or no?"
+        actions = [
+                {
+                    label = "Yes"
+                    type = "message"
+                    text = "yes"
+                },
+                {
+                    type = "message"
+                    label = "No"
+                    text = "no"
+                }
+        ]
+    }
+}
+
+task sendCarousel(type: Template) {
+    altText = "this is a carousel template"
+    template = {
+        type = "carousel"
+        columns = [
+                {
+                    thumbnailImageUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+                    title = "this is menu"
+                    text = "description"
+                    actions = [
+                            {
+                                type = "postback"
+                                label = "click1"
+                                data = "action=123"
+                            },
+                            {
+                                type = "postback"
+                                label = "click2"
+                                data = "action=456"
+                            },
+                            {
+                                type = "uri"
+                                label = "view detail"
+                                uri = "https://raw.githubusercontent.com/newnewcoder"
+                            }
+                    ]
+                },
+                {
+                    thumbnailImageUrl = "https://raw.githubusercontent.com/newnewcoder/linepush/master/asset/pic.jpg"
+                    title = "this is menu"
+                    text = "description"
+                    actions = [
+                            {
+                                type = "postback"
+                                label = "click3"
+                                data = "action=789"
+                            },
+                            {
+                                type = "postback"
+                                label = "click4"
+                                data = "action=000"
+                            },
+                            {
+
+                                type = "uri"
+                                label = "view detail"
+                                uri = "https://raw.githubusercontent.com/newnewcoder"
+                            }
+                    ]
+                }
+        ]
+    }
+}
