@@ -6,7 +6,6 @@ uploadArchives.sh
 
 # gradle
 .gradle/
-gradle.properties
 
 # intellij
 .idea/
