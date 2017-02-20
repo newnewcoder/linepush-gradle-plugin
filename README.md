@@ -11,20 +11,15 @@ In `build.gradle`, apply **linepush** plugin, and setting your line-bot informat
 ~~~groovy
 buildscript {
     repositories {
-        mavenCentral()
         maven {
-            url mavenUrl
-            credentials {
-                username repoUser
-                password repoPassword
-            }
+            url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath 'com.github.newnewcoder:linepush:0.0.1-SNAPSHOT'
+        classpath "gradle.plugin.com.github.newnewcoder:linepush:0.0.1-SNAPSHOT"
     }
 }
-apply plugin: 'linepush'
+apply plugin: 'com.github.newnewcoder.linepush'
 
 line {
     token = "<your linebot token>"

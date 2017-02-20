@@ -11,7 +11,7 @@ class linepushTest {
     @Test
     void greeterPluginAddsGreetingTaskToProject() {
         Project project = ProjectBuilder.builder().build()
-        project.pluginManager.apply 'linepush'
+        project.pluginManager.apply 'com.github.newnewcoder.linepush'
     }
 }
 
