@@ -1,5 +1,7 @@
 # Linepush Gradle Plugin
- 
+
+![build-status](https://travis-ci.org/newnewcoder/linepush.svg?branch=master)
+
 ## About
 It's a gradle plugin using [line-bot message push api](https://devdocs.line.me/en/#push-message) to send [line](https://line.me/en/) message.
 
