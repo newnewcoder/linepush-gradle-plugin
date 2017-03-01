@@ -10,7 +10,10 @@ import org.gradle.api.tasks.TaskAction
 import retrofit2.Response
 
 /**
- * Created by Pinky on 2/13/17.
+ * Linebot trait. Use implementation to send line message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
  */
 trait Linebot {
     def token = '' //set for linebot token
@@ -33,7 +36,10 @@ trait Linebot {
 }
 
 /**
- * Created by Pinky on 2/13/17.
+ * The default linebot task. Use it to send default text message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
  */
 class Default extends DefaultTask implements Linebot {
     @TaskAction

@@ -6,7 +6,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * Created by Pinky on 2/12/17.
+ * Gradle plugin for sending line message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
  */
 class LinepushPlugin implements Plugin<Project> {
     static final String EXT_NAME = 'line'
@@ -35,6 +38,12 @@ class LinepushPlugin implements Plugin<Project> {
     }
 }
 
+/**
+ * Plugin extension for setting linebot message api.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class LinepushPluginExtension {
     String token = 'linebot token'
     String sendTo = 'line room id that you want to send message'

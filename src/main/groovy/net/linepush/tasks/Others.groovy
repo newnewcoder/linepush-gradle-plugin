@@ -13,7 +13,10 @@ import com.linecorp.bot.model.message.template.ConfirmTemplate
 import org.gradle.api.Task
 
 /**
- * Created by Pinky on 2/13/17.
+ * The text linebot task. Use it to send text message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
  */
 class Text extends Default {
     def text = ''
@@ -27,6 +30,12 @@ class Text extends Default {
     }
 }
 
+/**
+ * The image linebot task. Use it to send image message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Image extends Default {
     def originalContentUrl
     def previewImageUrl
@@ -40,6 +49,12 @@ class Image extends Default {
     }
 }
 
+/**
+ * The video linebot task. Use it to send video message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Video extends Default {
     def originalContentUrl
     def previewImageUrl
@@ -53,6 +68,12 @@ class Video extends Default {
     }
 }
 
+/**
+ * The audio linebot task. Use it to send audio message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Audio extends Default {
     def originalContentUrl
     def duration
@@ -66,6 +87,12 @@ class Audio extends Default {
     }
 }
 
+/**
+ * The location linebot task. Use it to send location message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Location extends Default {
     def title
     def address
@@ -81,6 +108,12 @@ class Location extends Default {
     }
 }
 
+/**
+ * The sticker linebot task. Use it to send sticker message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Sticker extends Default {
     def packageId
     def stickerId
@@ -94,6 +127,12 @@ class Sticker extends Default {
     }
 }
 
+/**
+ * The imagemap linebot task. Use it to send imagemap message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Imagemap extends Default {
     def baseUrl
     def altText
@@ -160,6 +199,12 @@ class Imagemap extends Default {
     }
 }
 
+/**
+ * The template linebot task. Use it to send template message.
+ *
+ * @author newnewcoder
+ * @version 1.0.0
+ */
 class Template extends Default {
     def altText
 
