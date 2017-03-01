@@ -18,7 +18,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "gradle.plugin.com.github.newnewcoder:linepush:0.0.1-SNAPSHOT"
+        classpath "gradle.plugin.com.github.newnewcoder:linepush:1.0.0"
     }
 }
 apply plugin: 'com.github.newnewcoder.linepush'
