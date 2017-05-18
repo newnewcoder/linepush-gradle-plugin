@@ -5,26 +5,42 @@ group 'com.github.newnewcoder'
 
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
-apply plugin: "com.gradle.plugin-publish"
+apply plugin: 'com.jfrog.bintray'
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 repositories {
-    jcenter()
     mavenCentral()
 }
+
 ext {
-    linebotVersion = '1.6.0'
+    archivesBaseName = 'linepush-gradle-plugin'
+    description = 'It\'s a gradle plugin using *line-bot message push api* to send line message.'
 }
+
+task sourceJar(type: Jar, dependsOn: classes, description: 'Package source into jar') {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc, description: 'Package doc into jar') {
+    classifier = 'groovydoc'
+    from groovydoc.destinationDir
+}
+
+artifacts {
+    archives sourceJar, groovydocJar
+}
+
 dependencies {
+    def linebotVersion = '1.6.0'
     compile gradleApi()
     compile localGroovy()
     compile "com.linecorp.bot:line-bot-api-client:$linebotVersion"
@@ -32,16 +48,36 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
-pluginBundle {
-    website = 'https://github.com/newnewcoder/linepush'
-    vcsUrl = 'https://github.com/newnewcoder/linepush'
-    tags = ['linepush']
-    description = 'It\'s a gradle plugin using *line-bot message push api* to send line message.'
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId = project.group
+            artifactId = project.archivesBaseName
+            version = project.version
+            artifact sourceJar
+            artifact groovydocJar
+        }
+    }
+}
 
-    plugins {
-        linepushPlugin {
-            id = "com.github.newnewcoder.linepush"
-            displayName = 'Gradle LinePush plugin'
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'generic'
+        name = 'linepush-gradle-plugin'
+        userOrg = user
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/newnewcoder/linepush'
+        labels = ['linepush', 'gradle plugin']
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            desc = project.description
+            released = new Date()
         }
     }
 }

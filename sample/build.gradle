@@ -1,11 +1,9 @@
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath "gradle.plugin.com.github.newnewcoder:linepush:1.0.0"
+        classpath "com.github.newnewcoder:linepush:1.0.0"
     }
 }
 apply plugin: 'com.github.newnewcoder.linepush'

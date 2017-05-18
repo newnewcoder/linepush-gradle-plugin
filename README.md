@@ -1,6 +1,8 @@
 # Linepush Gradle Plugin
 
-![build-status](https://travis-ci.org/newnewcoder/linepush-gradle-plugin.svg?branch=master)
+![travis-ci](https://travis-ci.org/newnewcoder/linepush-gradle-plugin.svg?branch=master)
+[![license](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![download](https://api.bintray.com/packages/newnewcoder/generic/linepush-gradle-plugin/images/download.svg) ](https://bintray.com/newnewcoder/generic/linepush-gradle-plugin/_latestVersion)
 
 ## About
 It's a gradle plugin using [line-bot message push api](https://devdocs.line.me/en/#push-message) to send [line](https://line.me/en/) message.
@@ -13,12 +15,10 @@ In `build.gradle`, apply **linepush** plugin, and setting your line-bot informat
 ~~~groovy
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath "gradle.plugin.com.github.newnewcoder:linepush:1.0.0"
+        classpath "com.github.newnewcoder:linepush:1.0.0"
     }
 }
 apply plugin: 'com.github.newnewcoder.linepush'
