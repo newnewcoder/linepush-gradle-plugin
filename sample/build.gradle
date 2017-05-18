@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.github.newnewcoder:linepush:1.0.0"
+        classpath "com.github.newnewcoder:linepush-gradle-plugin:1.0.0"
     }
 }
 apply plugin: 'com.github.newnewcoder.linepush'
